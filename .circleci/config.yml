@@ -21,10 +21,9 @@ jobs:
             - ~/.gradle
           key: jars-{{ checksum "build.gradle" }}-{{ checksum  "app/build.gradle" }}
 
-      override:
       - emulator -avd circleci-android22 -no-audio -no-window:
-                           background: true
-                           parallel: true
+        background: true
+        parallel: true
 
       steps:
       -run:
