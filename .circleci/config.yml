@@ -21,15 +21,15 @@ jobs:
             - ~/.gradle
           key: jars-{{ checksum "build.gradle" }}-{{ checksum  "app/build.gradle" }}
       - run:
-          name: Run Tests
-          command: ./gradlew lint test --stacktrace
+          name: Run connectedAndroidTest
+          command: ./gradlew lint connectedAndroidTest --stacktrace
       - store_artifacts:
           path: app/build/reports
           destination: reports
       - store_test_results:
           path: app/build/test-results
       # See https://circleci.com/docs/2.0/deployment-integrations/ for deploy example
-      - test:
-        override:
-          name: Run Instrumented Test
-          command: ./gradlew connectedAndroidTest
+     # - test:
+      #  override:
+       #   name: Run Instrumented Test
+        #  command: ./gradlew connectedAndroidTest
