@@ -16,7 +16,7 @@ public class ObjectRepository {
     HashMap<String, Matcher<View>> elementMap;
 
     public ObjectRepository() {
-        elementMap =  new HashMap();
+        elementMap =  new HashMap<String, Matcher<View>>();
         setObjectRepository();
     }
 
