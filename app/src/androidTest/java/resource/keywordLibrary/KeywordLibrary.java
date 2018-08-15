@@ -1,8 +1,8 @@
-package com.mytaxi.android_demo.keywordLibrary;
+package resource.keywordLibrary;
 
 import android.support.test.espresso.matcher.RootMatchers;
 
-import com.mytaxi.android_demo.pageobjects.ObjectRepository;
+import resource.pageobjects.ObjectRepository;
 
 import static android.support.test.espresso.Espresso.onView;
 import static android.support.test.espresso.action.ViewActions.clearText;

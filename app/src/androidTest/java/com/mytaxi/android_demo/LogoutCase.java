@@ -3,8 +3,8 @@ package com.mytaxi.android_demo;
 import android.support.test.runner.AndroidJUnit4;
 
 import com.mytaxi.android_demo.activities.MainActivity;
-import com.mytaxi.android_demo.keywordLibrary.KeywordLibrary;
-import com.mytaxi.android_demo.pageobjects.ObjectRepository;
+import resource.keywordLibrary.KeywordLibrary;
+import resource.pageobjects.ObjectRepository;
 
 import org.junit.Rule;
 import org.junit.Test;
