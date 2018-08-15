@@ -29,3 +29,7 @@ jobs:
       - store_test_results:
           path: app/build/test-results
       # See https://circleci.com/docs/2.0/deployment-integrations/ for deploy example
+      - test:
+        override:
+          name: Run Instrumented Test
+          command: ./gradlew connectedAndroidTest
