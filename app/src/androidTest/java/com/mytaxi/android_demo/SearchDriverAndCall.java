@@ -1,34 +1,19 @@
-package com.mytaxi.android_demo.com.mytaxi.android_demo.testcases;
+package com.mytaxi.android_demo;
 
-import android.support.test.espresso.matcher.BoundedMatcher;
-import android.support.test.espresso.matcher.RootMatchers;
 import android.support.test.runner.AndroidJUnit4;
 
-import com.mytaxi.android_demo.ActivityRule;
-import com.mytaxi.android_demo.R;
 import com.mytaxi.android_demo.activities.MainActivity;
-import com.mytaxi.android_demo.com.mytaxi.android_demo.keywordLibrary.KeywordLibrary;
-import com.mytaxi.android_demo.models.Driver;
+import com.mytaxi.android_demo.keywordLibrary.KeywordLibrary;
 
-import org.hamcrest.Description;
-import org.hamcrest.Matcher;
 import org.junit.Rule;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 
-import static android.support.test.espresso.Espresso.onData;
-import static android.support.test.espresso.Espresso.onView;
 import static android.support.test.espresso.action.ViewActions.click;
-import static android.support.test.espresso.assertion.ViewAssertions.matches;
-import static android.support.test.espresso.matcher.ViewMatchers.isDescendantOfA;
-import static android.support.test.espresso.matcher.ViewMatchers.isDisplayed;
-import static android.support.test.espresso.matcher.ViewMatchers.withChild;
-import static android.support.test.espresso.matcher.ViewMatchers.withClassName;
 import static android.support.test.espresso.matcher.ViewMatchers.withHint;
 import static android.support.test.espresso.matcher.ViewMatchers.withId;
 import static android.support.test.espresso.matcher.ViewMatchers.withText;
 //import static com.mytaxi.android_demo.activities.RecordedTest.childAtPosition;
-import static org.hamcrest.CoreMatchers.equalTo;
 import static org.hamcrest.Matchers.allOf;
 import static org.hamcrest.Matchers.anything;
 import static org.hamcrest.Matchers.hasEntry;

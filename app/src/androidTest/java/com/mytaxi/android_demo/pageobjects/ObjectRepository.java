@@ -1,4 +1,4 @@
-package com.mytaxi.android_demo.com.mytaxi.android_demo.pageobjects;
+package com.mytaxi.android_demo.pageobjects;
 
 import com.mytaxi.android_demo.R;
 import android.view.View;
