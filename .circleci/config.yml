@@ -26,9 +26,9 @@ jobs:
           command: - emulator -avd circleci-android22 -no-audio -no-window:
                            background: true
                            parallel: true
-                - circle-android wait-for-boot
-                - sleep 30
-                - adb shell input keyevent 82
+             command:   - circle-android wait-for-boot
+               command: - sleep 30
+                command: - adb shell input keyevent 82
 
 
       - run:
