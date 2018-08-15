@@ -22,7 +22,7 @@ jobs:
           key: jars-{{ checksum "build.gradle" }}-{{ checksum  "app/build.gradle" }}
       - run:
           name: Run connectedAndroidTest
-          command: ./gradlew lint test --stacktrace
+          command: ./gradlew lint connectedAndroidTest --stacktrace
       - store_artifacts:
           path: app/build/reports
           destination: reports
