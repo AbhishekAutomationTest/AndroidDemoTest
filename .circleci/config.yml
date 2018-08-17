@@ -7,6 +7,9 @@ jobs:
         - image: circleci/android:api-26-alpha  # gcloud is baked into this image
       steps:
         - run:
+            name: Chmod permissions #if permission for Gradlew Dependencies fail, use this.
+            command: sudo chmod +x ./gradlew
+        - run:
             name: Download Dependencies
             command: ./gradlew androidDependencies
         - run:
