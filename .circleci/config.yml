@@ -28,7 +28,7 @@ jobs:
             command: echo $GCLOUD_SERVICE_KEY > ${HOME}/gcloud-service-key.json
         - run:
             name: Authorize gcloud and set config defaults
-            command:
+            command:  |
                 sudo gcloud auth activate-service-account --key-file=${HOME}/gcloud-service-key.json
                 sudo gcloud --quiet config set project ${GOOGLE_PROJECT_ID}
        # - run:
