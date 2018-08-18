@@ -22,6 +22,11 @@ jobs:
             paths:
               - ~/.gradle
             key: jars-{{ checksum "build.gradle" }}-{{ checksum  "app/build.gradle" }}
+
+        - run:
+            name: Store Google Service Account
+            command: echo $GCLOUD_SERVICE_KEY > ${HOME}/gcloud-service-key.json
+
        # - run:
         #    name: Build debug APK and release APK
          #   command:
