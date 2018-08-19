@@ -31,7 +31,7 @@ public class SearchDriverAndCall {
     public final ActivityRule<MainActivity> mActivityRule = new ActivityRule<>(MainActivity.class);
 
     @Test
-    public void launchMainScreen() throws InterruptedException {
+    public void SearchDriverWithCall() throws InterruptedException {
 
         login.Login();
 
