@@ -34,6 +34,7 @@ jobs:
             command: echo $GCLOUD_SERVICE_KEY > ${HOME}/gcloud-service-key.json
 
        #-run:
+       #
          #  name: decode GCloudSerive Key
           # command: echo $GCLOUD_SERVICE_KEY | base64 --decode --ignore-garbage > ${HOME}/gcloud-service-key.json
 
