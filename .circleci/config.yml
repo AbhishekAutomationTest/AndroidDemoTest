@@ -37,6 +37,7 @@ jobs:
             name: decode GCloudSerive Key
             command: echo $GCLOUD_SERVICE_KEY | base64 --decode --ignore-garbage > ${HOME}/gcloud-service-key.json
 
+          # Please
         - run:
             name: Authorize gcloud and set config defaults
             command:  |
