@@ -57,4 +57,4 @@ jobs:
             name: Install gsutil dependency and copy test results data
             command: |
               sudo pip install -U crcmod
-              gsutil -m cp -r -U "`gsutil ls gs://test-lab-k0p6bc8b4t562-y05vrffjt9ihu/2018-08-19_14:54:51.184770_ytSV/walleye-26-en-portrait | tail -1`*" /root/workspace/firebase/ | true
+              gsutil -m cp -r -U "`gsutil ls gs://test-lab-k0p6bc8b4t562-y05vrffjt9ihu | tail -1`*" /root/workspace/firebase/ | true
