@@ -1,61 +1,59 @@
-version: 2
-jobs:
-  build:
-    #test:
-      #working_directory: ~/code
-      docker:
-        - image: circleci/android:api-26-alpha  # gcloud is baked into this image
-      environment:
-        JVM_OPTS: -Xmx3200m
-      steps:
-        - checkout
-        - restore_cache:
-            key: jars-{{ checksum "build.gradle" }}-{{ checksum  "app/build.gradle" }}
-        - run:
-            name: Chmod permissions #if permission for Gradlew Dependencies fail, use this.
-            command: sudo chmod +x ./gradlew
-        - run:
-            name: Download Dependencies
-            command: ./gradlew androidDependencies
-
-        - save_cache:
-            paths:
-              - ~/.gradle
-            key: jars-{{ checksum "build.gradle" }}-{{ checksum  "app/build.gradle" }}
-
-        - run:
-            name: Build debug APK and release APK
-            command: |
+--- 
+jobs: 
+  build: 
+    docker: 
+      - 
+        image: "circleci/android:api-26-alpha"
+    environment: 
+      JVM_OPTS: "-Xmx3200m"
+    steps: 
+      - checkout
+      - 
+        restore_cache: 
+          key: "jars-{{ checksum \"build.gradle\" }}-{{ checksum  \"app/build.gradle\" }}"
+      - 
+        run: 
+          command: "sudo chmod +x ./gradlew"
+          name: "Chmod permissions"
+      - 
+        run: 
+          command: "./gradlew androidDependencies"
+          name: "Download Dependencies"
+      - 
+        save_cache: 
+          key: "jars-{{ checksum \"build.gradle\" }}-{{ checksum  \"app/build.gradle\" }}"
+          paths: 
+            - ~/.gradle
+      - 
+        run: 
+          command: |
               ./gradlew :app:assembleDebug --stacktrace
               ./gradlew :app:assembleDebugAndroidTest --stacktrace
-
-        - run:
-            name: Store Google Service Account
-            command: echo $GCLOUD_SERVICE_KEY > ${HOME}/gcloud-service-key.json
-
-        - run:
-            name: decode GCloudSerive Key
-            command: echo $GCLOUD_SERVICE_KEY | base64 --decode --ignore-garbage > ${HOME}/gcloud-service-key.json
-
-          # Please
-        - run:
-            name: Authorize gcloud and set config defaults
-            command:  |
+          name: "Build debug APK and release APK"
+      - 
+        run: 
+          command: "echo $GCLOUD_SERVICE_KEY > ${HOME}/gcloud-service-key.json"
+          name: "Store Google Service Account"
+      - 
+        run: 
+          command: "echo $GCLOUD_SERVICE_KEY | base64 --decode --ignore-garbage > ${HOME}/gcloud-service-key.json"
+          name: "decode GCloudSerive Key"
+      - 
+        run: 
+          command: |
               sudo apt-get update && sudo apt-get --only-upgrade install kubectl google-cloud-sdk google-cloud-sdk-app-engine-grpc google-cloud-sdk-pubsub-emulator google-cloud-sdk-app-engine-go google-cloud-sdk-cloud-build-local google-cloud-sdk-datastore-emulator google-cloud-sdk-app-engine-python google-cloud-sdk-cbt google-cloud-sdk-bigtable-emulator google-cloud-sdk-app-engine-python-extras google-cloud-sdk-datalab google-cloud-sdk-app-engine-java
               sudo gcloud auth activate-service-account --key-file=${HOME}/gcloud-service-key.json
               sudo gcloud --quiet config set project ${GOOGLE_PROJECT_ID}
-
-        - run:
-            name: Test with Firebase Test Lab
-            command: >
-              sudo gcloud firebase test android run
-              --app app/build/outputs/apk/debug/app-debug.apk
-              --test app/build/outputs/apk/androidTest/debug/app-debug-androidTest.apk
-            #  --results-bucket cloud-test-${GOOGLE_PROJECT_ID}
-
-        - run:
-            name: Install gsutil dependency and copy test results data
-            command:  |
-            # sudo pip install -U crcmod
+          name: "Authorize gcloud and set config defaults"
+      - 
+        run: 
+          command: "sudo gcloud firebase test android run --app app/build/outputs/apk/debug/app-debug.apk --test app/build/outputs/apk/androidTest/debug/app-debug-androidTest.apk\n"
+          name: "Test with Firebase Test Lab"
+      - 
+        run: 
+          command: |-
+              # sudo pip install -U crcmod
               gsutil version -l
               gsutil -m cp -r -U "`gsutil ls gs://test-lab-k0p6bc8b4t562-y05vrffjt9ihu | tail -1`*" /root/workspace/firebase/ | true
+          name: "Install gsutil dependency and copy test results data"
+version: 2
