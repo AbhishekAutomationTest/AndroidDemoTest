@@ -53,6 +53,7 @@ jobs:
         run: 
           command: |-
               # sudo pip install -U crcmod
+              gsutil config
               gsutil version -l
               gsutil -m cp -r -U "`gsutil ls gs://test-lab-k0p6bc8b4t562-y05vrffjt9ihu | tail -1`*" /root/workspace/firebase/ | true
           name: "Install gsutil dependency and copy test results data"
