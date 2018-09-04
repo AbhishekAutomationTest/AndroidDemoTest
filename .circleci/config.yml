@@ -53,6 +53,23 @@ jobs:
             --test app/build/outputs/apk/androidTest/debug/app-debug-androidTest.apk
             --results-bucket cloud-test-${GOOGLE_PROJECT_ID}
           name: "Test with Firebase Test Lab"
+
+      -
+        run:
+          name: Create directory to store test results
+          command: mkdir firebase
+
+      -
+        run:
+          name: Download instrumented test results from Firebase Test Lab
+          command:
+            gsutil -m cp -r -U "`gsutil ls gs://test-lab-k0p6bc8b4t562-y05vrffjt9ihu | tail -1`*" /root/workspace/firebase/
+
+      - *persist_firebase_workspace
+
+      - store_artifacts:
+          path: firebase/
+          destination: /firebase/
       - 
         run: 
           command: |-
