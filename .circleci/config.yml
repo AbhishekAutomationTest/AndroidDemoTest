@@ -63,17 +63,18 @@ jobs:
         run:
           name: Download instrumented test results from Firebase Test Lab
           command:
-            gsutil -m cp -r -U "`gsutil ls gs://test-lab-k0p6bc8b4t562-y05vrffjt9ihu | tail -1`*" /root/workspace/firebase/
+            sudo pip install -U crcmod
+            sudo gsutil -m cp -r -U "`gsutil ls gs://test-lab-k0p6bc8b4t562-y05vrffjt9ihu | tail -1`*" /root/workspace/firebase/
 
       - store_artifacts:
           path: firebase/
           destination: /firebase/
-      - 
-        run: 
-          command: |-
-              # sudo pip install -U crcmod
-              gsutil config -n
-              gsutil version -l
-              gsutil -m cp -r -U "`gsutil ls gs://test-lab-k0p6bc8b4t562-y05vrffjt9ihu | tail -1`*" /root/workspace/firebase/ | true
-          name: "Install gsutil dependency and copy test results data"
+#      -
+#        run:
+#          command: |-
+#              # sudo pip install -U crcmod
+#              gsutil config -n
+#              gsutil version -l
+#              gsutil -m cp -r -U "`gsutil ls gs://test-lab-k0p6bc8b4t562-y05vrffjt9ihu | tail -1`*" /root/workspace/firebase/ | true
+#          name: "Install gsutil dependency and copy test results data"
 version: 2
