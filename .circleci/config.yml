@@ -62,7 +62,7 @@ jobs:
       -
         run:
           name: Download instrumented test results from Firebase Test Lab
-          command:
+          command: |
             sudo pip install -U crcmod
             sudo gsutil -m cp -r -U "`gsutil ls gs://test-lab-k0p6bc8b4t562-y05vrffjt9ihu | tail -1`*" /root/workspace/firebase/
 
